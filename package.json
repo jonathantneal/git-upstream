@@ -1,0 +1,22 @@
+{
+  "name": "git-upstream",
+  "version": "1.0.0",
+  "description": "Type `git upstream` to automatically assign your git upstream url",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "jonathantneal/git-upstream",
+  "homepage": "https://github.com/jonathantneal/git-upstream#readme",
+  "bugs": "https://github.com/jonathantneal/git-upstream/issues",
+  "bin": {
+    "git-upstream": "git-upstream"
+  },
+  "preferGlobal": true,
+  "files": [
+    "git-upstream"
+  ],
+  "keywords": [
+    "git",
+    "cli",
+    "upstream"
+  ]
+}

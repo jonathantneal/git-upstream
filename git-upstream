@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# are we in a git repo?
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+  echo "Not a git repository." 1>&2
+  exit 1
+fi
+
+# check for existing upstream
+upstream=$(git config --get remote.upstream.url)
+
+if [ ! -z "$upstream" ]; then
+  echo "upstream already exists"
+  exit 1
+fi
+
+# get origin repo
+origin=$(git config --get remote.origin.url)
+repo=${origin##*:}
+repo=${repo%%.git}
+
+# get upstream from ssh_url
+upstream=$(curl -s "https://api.github.com/repos/$repo")
+upstream=${upstream##*ssh_url\": \"}
+upstream=${upstream%%\"*}
+
+# assign upstream
+if [ ! -z "$upstream" ]; then
+  git remote add upstream "$upstream"
+else
+  echo "no upstream found"
+fi
